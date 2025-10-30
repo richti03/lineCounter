@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Line Counter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIP-Zeilenzaehler</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header>
+    <h1>ZIP-Zeilenzaehler</h1>
+    <p>Lade ein ZIP-Archiv hoch, um die Ordnerstruktur und Zeilenanzahl unterstützter Dateien anzuzeigen.</p>
+</header>
 
+<main class="container">
+    <section class="upload">
+        <label for="zipInput" class="upload-area" id="dropZone">
+            <span class="upload-icon" aria-hidden="true">📁</span>
+            <span class="upload-text">Klicke hier oder ziehe eine ZIP-Datei hinein</span>
+            <input type="file" id="zipInput" accept=".zip" hidden>
+        </label>
+        <p class="hint">Unterstützte Dateiendungen: .java, .txt, .md, .html, .css, .js</p>
+    </section>
+
+    <section class="results" aria-live="polite">
+        <h2>Ergebnis</h2>
+        <div id="summary" class="summary"></div>
+        <div id="structure" class="structure" role="tree"></div>
+    </section>
+</main>
+
+<template id="tree-template">
+    <ul class="tree"></ul>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
+        integrity="sha256-6zZsbC/NKvxEYhG6hCdsbCTyxSbVD+zQLDsDWW3DeBc="
+        crossorigin="anonymous"></script>
+<script src="script.js"></script>
 </body>
 </html>
