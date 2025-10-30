@@ -51,12 +51,19 @@ async function handleFile(file) {
 
     try {
         const arrayBuffer = await file.arrayBuffer();
+        if (typeof JSZip === "undefined") {
+            throw new Error("Die JSZip-Bibliothek konnte nicht geladen werden.");
+        }
         const zip = await JSZip.loadAsync(arrayBuffer);
         const analysis = await analyzeZip(zip);
         renderResults(file.name, analysis);
     } catch (error) {
         console.error(error);
-        resetView("Das Archiv konnte nicht gelesen werden. Bitte versuche es erneut.");
+        const message =
+            error?.message === "Die JSZip-Bibliothek konnte nicht geladen werden."
+                ? "Die ZIP-Bibliothek konnte nicht geladen werden. Bitte überprüfe deine Internetverbindung und lade die Seite neu."
+                : "Das Archiv konnte nicht gelesen werden. Bitte versuche es erneut.";
+        resetView(message);
     }
 }
 
