@@ -1,4 +1,4 @@
-const supportedExtensions = new Set(["java", "txt", "md", "html", "css", "js"]);
+const supportedExtensions = new Set(["java", "txt", "md", "html", "css", "js", "json"]);
 
 const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("zipInput");
